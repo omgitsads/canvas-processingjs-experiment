@@ -53,13 +53,7 @@ jQuery(function($){
 	  for(var i=0;i<numOfStars;i++){
 	    var object = stars[i];
 	    
-	    if(object.isHoveredBy(cursor)){ 
-	      object.focus(); 
-	    } else { 
-	      object.blur(); 
-	    }
 	    object.nextPointInArcFor(sun);
-	    
 	    object.draw();
     }
 	}
