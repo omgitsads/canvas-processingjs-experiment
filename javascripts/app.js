@@ -8,8 +8,9 @@ jQuery(function($){
       nX = X,
       nY = Y,
       delay = 16,
-      numOfCircles = 1000,
-      circles = [],
+      numOfStars = 1000,
+      stars = [],
+      sun,
       cursor;
   
   // setup processing object
@@ -23,28 +24,30 @@ jQuery(function($){
     nY = height/2;
 		startedAt = new Date();
 		
-		cursor = new Cursor(p, p.mouseX, p.mouseY);
+		//cursor = new Cursor(p, p.mouseX, p.mouseY);
+		sun = new Sun(p, X, Y);
 		
-		for(var i=0;i<numOfCircles;i++){
+		for(var i=0;i<numOfStars;i++){
 		  randomPositionX = Math.random() * width;
 		  randomPositionY = Math.random() * height;
-		  circles.push(new Circle(p,randomPositionX, randomPositionY));
+		  stars.push(new Star(p,randomPositionX, randomPositionY));
 		}
 	}
 	
 	p.mouseMoved = function(){
-	  cursor.moveTo(p.mouseX,p.mouseY)
+	  //cursor.moveTo(p.mouseX,p.mouseY)
 	}
 	
 	p.draw = function(){
 	  p.background(0);
 	  
-	  cursor.draw();
+	  //cursor.draw();
+	  sun.draw();
 	  
-	  for(var i=0;i<numOfCircles;i++){
-	    var object = circles[i];
+	  for(var i=0;i<numOfStars;i++){
+	    var object = stars[i];
 	    
-	    if(object.isWithinInfluenceOf(cursor)){ object.decay(cursor); }
+	    //if(object.isWithinInfluenceOf(cursor)){ object.decay(cursor); }
 	    object.draw();
     }
 	}
