@@ -15,11 +15,5 @@ Cursor.prototype.moveTo = function(newX,newY){
 }
 
 Cursor.prototype.draw = function(){
-  // Set fill-color to blue  
-  this.processing.noFill();  
-
-  // Set stroke-color white  
-  this.processing.noStroke();
-  
-  this.processing.ellipse( this.attributes.currentX, this.attributes.currentY, this.attributes.radius, this.attributes.radius );
+  // Do Nothing
 }

@@ -24,30 +24,42 @@ jQuery(function($){
     nY = height/2;
 		startedAt = new Date();
 		
-		//cursor = new Cursor(p, p.mouseX, p.mouseY);
+		cursor = new Cursor(p, p.mouseX, p.mouseY);
 		sun = new Sun(p, X, Y);
 		
 		for(var i=0;i<numOfStars;i++){
-		  randomPositionX = Math.random() * width;
-		  randomPositionY = Math.random() * height;
-		  stars.push(new Star(p,randomPositionX, randomPositionY));
+		  while(true){
+		    var randomPositionX = Math.random() * width;
+  		  var randomPositionY = Math.random() * height;
+  		  var star = new Star(p,randomPositionX, randomPositionY);
+  		  if(!star.isWithin(sun,10)){
+  		    star.calculateThetaOffset(sun);
+  		    stars.push(star);
+  		    break;
+  		  }
+		  }
 		}
 	}
 	
 	p.mouseMoved = function(){
-	  //cursor.moveTo(p.mouseX,p.mouseY)
+	  cursor.moveTo(p.mouseX,p.mouseY)
 	}
 	
 	p.draw = function(){
 	  p.background(0);
 	  
-	  //cursor.draw();
 	  sun.draw();
 	  
 	  for(var i=0;i<numOfStars;i++){
 	    var object = stars[i];
 	    
-	    //if(object.isWithinInfluenceOf(cursor)){ object.decay(cursor); }
+	    if(object.isHoveredBy(cursor)){ 
+	      object.focus(); 
+	    } else { 
+	      object.blur(); 
+	    }
+	    object.nextPointInArcFor(sun);
+	    
 	    object.draw();
     }
 	}

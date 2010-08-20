@@ -1,9 +1,10 @@
 var Sun = function(p,x,y){
   this.processing = p;
   this.attributes = {
-    x: x,
-    y: y,
-    radius: 250.0
+    currentX: x,
+    currentY: y,
+    radius: 250.0,
+    influence: 600
   }
 }
 
@@ -14,5 +15,5 @@ Sun.prototype.draw = function(){
   // Set stroke-color white  
   this.processing.noStroke();
   
-  this.processing.ellipse( this.attributes.x, this.attributes.y, this.attributes.radius, this.attributes.radius );
+  this.processing.ellipse( this.attributes.currentX, this.attributes.currentY, this.attributes.radius, this.attributes.radius );
 }
